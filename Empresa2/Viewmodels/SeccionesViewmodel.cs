@@ -14,6 +14,7 @@ using Empresa2.Services;
 using Empresa2.Models.DTO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.IO;
+using System.Diagnostics;
 
 namespace Empresa.Viewmodels
 {
@@ -147,6 +148,12 @@ namespace Empresa.Viewmodels
             byte[] pdf = reportesSecciones.GetReporteSecciones(SeccionesDTO.ToList());
             string ruta = "ReporteSecciones.pdf";
             File.WriteAllBytes(ruta, pdf);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = ruta,
+                UseShellExecute = true
+            });
         }
     }
 }
